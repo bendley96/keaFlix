@@ -476,7 +476,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: block;
 }
 
-.bg-slate-400 {
+.bg-slate-500 {
   --tw-bg-opacity: 1;
-  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
+  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
 }
