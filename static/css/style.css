@@ -472,11 +472,15 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: static;
 }
 
-.block {
-  display: block;
+.z-10 {
+  z-index: 10;
 }
 
-.bg-slate-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.block {
+  display: block;
 }
