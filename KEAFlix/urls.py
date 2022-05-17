@@ -19,4 +19,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('core.urls'), name='core'),
+    
+    #third party url allauth
+    path('accounts/', include('allauth.urls')),
 ]
+
