@@ -3,7 +3,7 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from core.forms import ProfileForm
-from core.models import Profile
+from core.models import Profile, Movie
 
 class Home(View):
     def get(self, request, *args, **kwargs):
@@ -35,3 +35,19 @@ class CreateProfile(View):
                 request.user.profiles.add(profile)
                 return redirect('core:profiles')
         return render(request, 'profile_create.html', {'form':form})
+
+method_decorator(login_required, name = 'dispatch')
+class ProfileHome(View):
+    def get(self, request, profile_id, *args, **kwargs):
+        
+        try:
+            profile = Profile.objects.get(uuid = profile_id)
+            movies = Movie.objects.all
+            
+            if profile not in request.user.profiles.all():
+                return redirect(to='core:profiles')    
+            
+            return render(request, 'movie_list.html', {'movies':movies})
+        except Profile.DoesNotExist:
+            return redirect(to='core:profiles')
+        

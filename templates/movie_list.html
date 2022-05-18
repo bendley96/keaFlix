@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Alle film
+{% endblock title %}
+
+{% block other %}
+
+{% endblock other %}
+
+{% block body_block %}
+    {% include "partials/_navbar.html" %}
+
+    {% for movie in movies %}
+        <p>{{movie.title}}</p>
+    {% endfor %}
+    
+{% endblock body_block %}
