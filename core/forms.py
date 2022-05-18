@@ -5,8 +5,7 @@ class ProfileForm(ModelForm):
     class Meta:
         model=Profile
         exclude=['uuid']
-        
-class VideoUploadForm(ModelForm):
+class MovieForm(ModelForm):
     class Meta:
         model=Movie
-        exclude=['uuid']
+        fields=['title', 'file']
