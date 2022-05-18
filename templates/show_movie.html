@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Alle film
+{% endblock title %}
+
+{% block other %}
+
+{% endblock other %}
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+{% block body_block %}
+    {% include "partials/_navbar.html" %}
+    <main class='bg-primary_black h-full w-full '>
+        
+        <video src="{{movie.file.url}}" controls class="w-full h-screen player"></video>
+        
+    </main>
+
+{% endblock body_block %}

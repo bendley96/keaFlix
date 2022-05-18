@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from core.views import UploadMovie
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('core.urls'), name='core'),
+    path('upload-film/', UploadMovie.as_view(), name='upload_film'),
     
     #third party url allauth
     path('accounts/', include('allauth.urls')),

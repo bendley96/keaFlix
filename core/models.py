@@ -5,13 +5,13 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 AGE_CHOICES = (
-    ('All', 'All'),
-    ('Kids', 'Kids'),
+    ('Alle', 'Alle'),
+    ('Børn', 'Børn'),
 )
 
 MOVIE_CHOICES = (
-    ('seasonal', 'Seasonal'),
-    ('single', 'Single'),
+    ('serie', 'Serie'),
+    ('film', 'Film'),
 )
 class CustomUser(AbstractUser):
     profiles = models.ManyToManyField('Profile',blank=True)
@@ -22,19 +22,12 @@ class Profile(models.Model):
     age_limit = models.CharField(max_length=15,choices=AGE_CHOICES)
     uuid      = models.UUIDField(default = uuid.uuid4)
         
-class Video(models.Model):
+class Movie(models.Model):
     title       = models.CharField(max_length=255, blank = True, null = True)
     file        = models.FileField(upload_to = 'movies')
-
-class Movie(models.Model):
-    title       =   models.CharField(max_length = 255)
     description =   models.TextField(blank = True,null = True)
     created_at  =   models.DateTimeField(auto_now_add=True)
     uuid        =   models.UUIDField(default = uuid.uuid4)
-    type        =   models.CharField(max_length = 10,choices=MOVIE_CHOICES)
-    videos      =   models.ForeignKey(Video, on_delete=models.CASCADE)
-    thumbnail   =   models.ImageField(upload_to = 'thumbnails')
-    age_limit   =   models.CharField(max_length = 10, choices=AGE_CHOICES)
-    
-
-    
+    type        =   models.CharField(max_length = 10,choices=MOVIE_CHOICES, blank = True,null = True)
+    thumbnail   =   models.ImageField(upload_to = 'thumbnails',default='/thumbnails/default_thumbnail.jpg', blank = True,null = True)
+    age_limit   =   models.CharField(max_length = 10, choices=AGE_CHOICES, blank = True,null = True)
