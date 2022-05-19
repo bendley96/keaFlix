@@ -14,12 +14,20 @@
     <nav class="p-5 shadow md:flex md:items-center md:justify-between opacity-50" style="background-color:#BC1600;">
         <div>
             <span class="text-2x1 font-[Poppins] cursor-pointer">
-                <img src= "{% static "KEAFLIX_ORIGINAL.png" %}" alt= "KEAFLIX" >
+                <a href="{% url 'core:home' %}">
+                    <img src= "{% static "KEAFLIX_ORIGINAL.png" %}" alt= "KEAFLIX" >
+                </a>
             </span>
         </div>
-
+        
         <ul class="md:flex md:items-center">
+            
             {% if request.user.is_authenticated %}
+            <li class="mx-4">
+                <button class="bg-primary_red py-1 px-2 md:text-lg rounded-md hover:text-red-500 duration-500">
+                    <a href="{% url 'core:profiles' %}"> Vælg profil </a>
+                </button>
+            </li>
             <form action="{% url 'account_logout' %}" method="post">
                 {% csrf_token %}
                 <button class="bg-primary_red py-1 px-2 md:text-lg rounded-md hover:text-red-500 duration-500">

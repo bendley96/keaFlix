@@ -17,7 +17,7 @@ New profile
         <section>
             <h3 class="font-bold text-2xl text-center">Opret en profil</h3>
         </section>
-
+        {{form.errors}}
         <section class="mt-5">
             <form method="post" action="{% url 'core:create_profile' %}" class="flex flex-col" >
                 {% csrf_token %}
@@ -30,8 +30,8 @@ New profile
                 <div class="mb-6 pt-3 rounded bg-white">
                     <label class="block text-gray-700 text-sm font-bold mb-2 ml-3">Aldersgrænse</label>
                     <select class="p-2 bg-gray-200 rounded-sm text-gray-700 outline-none block w-full" name="age_limit" id="id_age_limit">
-                        <option value="All">Alt</option>
-                        <option value="Kids">Barn</option>
+                        <option value="Alle">Alt</option>
+                        <option value="Børn">Barn</option>
                     </select>
                 </div>
 
