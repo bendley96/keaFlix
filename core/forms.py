@@ -8,4 +8,4 @@ class ProfileForm(ModelForm):
 class MovieForm(ModelForm):
     class Meta:
         model=Movie
-        fields=['title', 'file']
+        fields=['title', 'file','original_title', 'description','backdrop_path', 'release_date','runtime', 'vote_average']

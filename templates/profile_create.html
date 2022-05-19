@@ -19,7 +19,7 @@ New profile
         </section>
 
         <section class="mt-5">
-            <form class="flex flex-col" method="POST">
+            <form method="post" action="{% url 'core:create_profile' %}" class="flex flex-col" >
                 {% csrf_token %}
 
 

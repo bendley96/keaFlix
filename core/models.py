@@ -23,9 +23,16 @@ class Profile(models.Model):
     uuid      = models.UUIDField(default = uuid.uuid4)
         
 class Movie(models.Model):
-    title       = models.CharField(max_length=255, blank = True, null = True)
-    file        = models.FileField(upload_to = 'movies')
-    description =   models.TextField(blank = True,null = True)
+    title           = models.CharField(max_length=255, blank = True, null = True)
+    original_title  = models.CharField(max_length=255, blank = True, null = True)
+    file            = models.FileField(upload_to = 'movies')
+    description     = models.TextField(blank = True,null = True)
+    backdrop_path   = models.TextField(blank = True,null = True)
+    release_date    = models.TextField(blank = True, null = True)
+    runtime         = models.CharField(max_length=255, blank = True, null = True)
+    vote_average    = models.CharField(max_length=255, blank = True, null = True)
+    tagline         = models.CharField(max_length=255, blank = True, null = True)
+    
     created_at  =   models.DateTimeField(auto_now_add=True)
     uuid        =   models.UUIDField(default = uuid.uuid4)
     type        =   models.CharField(max_length = 10,choices=MOVIE_CHOICES, blank = True,null = True)
