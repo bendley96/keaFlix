@@ -80,10 +80,13 @@ class UploadMovie(View):
             for mov in movies:
                 if mov.title == movie.original_title:
                     duplicate_movie == True
-                    return
+                    return redirect('core:profiles')
+
                 
             if not duplicate_movie:
                 movie.save()
+                return redirect('core:profiles')
+
                 
             return redirect('core:profiles')
             

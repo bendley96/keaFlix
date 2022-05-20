@@ -10,9 +10,9 @@
 {% endblock other %}
 
 {% block body_block %}
-    {% include "partials/_navbar.html" %}
     
     <main class='bg-primary_black min-h-screen w-full'>
+        {% include "partials/_navbar.html" %}
             {% if show_case %}
             <section class="h-screen relative bg-no-repeat pb-8 pl-6 flex items-end bg-cover" style="background-image: url('{{show_case.backdrop_path}}');">
             <div>

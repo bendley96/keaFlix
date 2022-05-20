@@ -10,12 +10,11 @@
 </head>
 {% load static %}
  <!-- NAVBAR -->
- <body class="bg-slate-800">
-    <nav class="p-5 shadow md:flex md:items-center md:justify-between opacity-50" style="background-color:#BC1600;">
+    <nav class="p-5 shadow md:flex md:items-center md:justify-between navMenu"id="navMenu" style="background-color:#0d0d0d;position:absolute;width:100%;">
         <div>
             <span class="text-2x1 font-[Poppins] cursor-pointer">
                 <a href="{% url 'core:home' %}">
-                    <img src= "{% static "KEAFLIX_ORIGINAL.png" %}" alt= "KEAFLIX" >
+                    <p class="text-3xl font-mono text-white">MediaM8</p>
                 </a>
             </span>
         </div>
@@ -24,29 +23,51 @@
             
             {% if request.user.is_authenticated %}
             <li class="mx-4">
-                <button class="bg-primary_red py-1 px-2 md:text-lg rounded-md hover:text-red-500 duration-500">
+                <button class="bg-primary_red text-white py-1 px-2 md:text-lg rounded-md hover:text-red-500 duration-500">
                     <a href="{% url 'core:profiles' %}"> Vælg profil </a>
                 </button>
             </li>
             <form action="{% url 'account_logout' %}" method="post">
                 {% csrf_token %}
-                <button class="bg-primary_red py-1 px-2 md:text-lg rounded-md hover:text-red-500 duration-500">
+                <button class="bg-primary_red text-white py-1 px-2 md:text-lg rounded-md hover:text-red-500 duration-500">
                     Sign out
                 </button>
             </form>
             <a href="{% url 'upload_film' %}">
-            <button class="bg-primary_red py-1 px-2 md:text-lg rounded-md hover:text-red-500 duration-500">
+            <button class="bg-primary_red text-white py-1 px-2 md:text-lg rounded-md hover:text-red-500 duration-500">
                 Upload film
             </button>
             </a>
             {% else %}
             <li class="mx-4">
-                <button class="bg-primary_red py-1 px-2 md:text-lg rounded-md hover:text-red-500 duration-500">
+                <button class="text-white bg-primary_red py-1 px-2 md:text-lg rounded-md hover:text-red-500 duration-500">
                     <a href="{% url 'account_login' %}"> Sign in</a>
                 </button>
             </li>
             {% endif %}
         </ul>
     </nav>
-</body>
 <!-- NAVBAR END -->
+
+<script>
+    $(document).ready(function(){
+        $(window).on('scroll', function() {
+            var scrollTop     = $(window).scrollTop(),
+                thirdLayerOffset = $('#thirdLayer').offset().top,
+                distanceTop      = (thirdLayerOffset - scrollTop);
+            if(distanceTop > 0) {
+                if(distanceTop < 200 && distanceTop >= 100)
+                    $('#navMenu').css({ opacity: (distanceTop-100)/100});
+                else if(distanceTop <100)
+                    $('#navMenu').css({ opacity: 0});
+                else 
+                    $('#navMenu').css({ opacity: 1});
+            }
+            else if (distanceTop <= 0) {
+                $('#navMenu').css({
+                    'opacity': 0
+                })
+            }
+        });
+    });
+</script>
