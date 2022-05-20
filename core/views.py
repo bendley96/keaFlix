@@ -36,8 +36,15 @@ def get_movie_details(movie_id):
         runtime = json_data['runtime']
         vote_average = json_data['vote_average']
         tagline = json_data['tagline']
+        genres = list()
         
-    return description,backdrop_path,original_title,release_date,runtime,vote_average,tagline
+        json_genres = json_data['genres']
+        for i in json_genres:
+            current_genre = i['name']
+            genres.append(current_genre)
+            
+        print(genres)
+    return description,backdrop_path,original_title,release_date,runtime,vote_average,tagline, genres
 
 class Home(View):
     def get(self, request, *args, **kwargs):
@@ -62,7 +69,7 @@ class UploadMovie(View):
             file = form.cleaned_data['file']
             
             movie_id = get_movie_id(title)
-            description,backdrop_path,original_title,release_date,runtime,vote_average,tagline = get_movie_details(movie_id)
+            description,backdrop_path,original_title,release_date,runtime,vote_average,tagline,genres = get_movie_details(movie_id)
             
             movie = Movie()
             movie.title = title
@@ -78,7 +85,7 @@ class UploadMovie(View):
             movies = Movie.objects.all()
             
             for mov in movies:
-                if mov.title == movie.original_title:
+                if mov.original_title == movie.original_title:
                     duplicate_movie == True
                     return redirect('core:profiles')
 

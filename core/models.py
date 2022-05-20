@@ -33,6 +33,7 @@ class Movie(models.Model):
     vote_average    = models.CharField(max_length=255, blank = True, null = True)
     tagline         = models.CharField(max_length=255, blank = True, null = True)
     
+    
     created_at  =   models.DateTimeField(auto_now_add=True)
     uuid        =   models.UUIDField(default = uuid.uuid4)
     type        =   models.CharField(max_length = 10,choices=MOVIE_CHOICES, blank = True,null = True)

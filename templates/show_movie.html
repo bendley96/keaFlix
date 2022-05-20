@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Alle film
+    {{movie.original_title}}
 {% endblock title %}
 
 {% block other %}
@@ -13,7 +13,9 @@
     {% include "partials/_navbar.html" %}
     <main class='bg-primary_black h-full w-full '>
         
-        <video src="{{movie.file.url}}" controls class="w-full h-screen player"></video>
+        <video class="w-full h-screen player" preload="metadata" poster="{{movie.backdrop_path.url}}">
+            <source src="{{movie.file.url}}">
+        </video>
         
     </main>
 
