@@ -43,7 +43,6 @@ def get_movie_details(movie_id):
             current_genre = i['name']
             genres.append(current_genre)
             
-        print(genres)
     return description,backdrop_path,original_title,release_date,runtime,vote_average,tagline, genres
 
 class Home(View):
@@ -81,13 +80,11 @@ class UploadMovie(View):
             movie.vote_average = vote_average
             movie.backdrop_path = "https://image.tmdb.org/t/p/original" + backdrop_path
             movie.tagline = tagline
+            movie.genres = genres
             
+            print(movie.genres)
             movies = Movie.objects.all()
-            genres_in_database = Genres.objects.all()
-
-
-            
-
+                       
 
 
             for mov in movies:
