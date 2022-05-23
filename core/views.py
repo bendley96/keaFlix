@@ -5,7 +5,7 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from core.forms import ProfileForm,MovieForm
-from core.models import Profile, Movie
+from core.models import Profile, Movie, Genres
 import requests
 import json
 
@@ -83,7 +83,13 @@ class UploadMovie(View):
             movie.tagline = tagline
             
             movies = Movie.objects.all()
+            genres_in_database = Genres.objects.all()
+
+
             
+
+
+
             for mov in movies:
                 if mov.original_title == movie.original_title:
                     duplicate_movie == True
