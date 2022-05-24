@@ -40,7 +40,7 @@ class Movie(models.Model):
     thumbnail   =   models.ImageField(upload_to = 'thumbnails',default='/thumbnails/default_thumbnail.jpg', blank = True,null = True)
     age_limit   =   models.CharField(max_length = 10, choices=AGE_CHOICES, blank = True,null = True)
 
-class Genres(models.Model):
+class Genre(models.Model):
     genre       =   models.CharField(max_length = 10, blank = True,null = True)
-    genre_id    =   models.CharField(max_length = 10, blank = True,null = True)
-    movie       =   models.ManyToManyField(Movie)
+    genre_id    =   models.UUIDField(default = uuid.uuid4)
+    movies       =   models.ManyToManyField(Movie)

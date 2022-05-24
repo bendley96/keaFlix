@@ -5,7 +5,7 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from core.forms import ProfileForm,MovieForm
-from core.models import Profile, Movie, Genres
+from core.models import Profile, Movie, Genre
 import requests
 import json
 
@@ -60,6 +60,7 @@ class UploadMovie(View):
 
     def post(self,request,*args,**kwargs):
         form = MovieForm(request.POST, request.FILES or None)
+        genre = Genre()
         duplicate_movie = False
         print(form.is_valid())
         if form.is_valid():
@@ -80,12 +81,10 @@ class UploadMovie(View):
             movie.vote_average = vote_average
             movie.backdrop_path = "https://image.tmdb.org/t/p/original" + backdrop_path
             movie.tagline = tagline
-            movie.genres = genres
             
-            print(movie.genres)
             movies = Movie.objects.all()
                        
-
+            
 
             for mov in movies:
                 if mov.original_title == movie.original_title:
