@@ -60,8 +60,9 @@ class UploadMovie(View):
 
     def post(self,request,*args,**kwargs):
         form = MovieForm(request.POST, request.FILES or None)
-        genre = Genre()
+        
         duplicate_movie = False
+        
         print(form.is_valid())
         if form.is_valid():
             print(form.cleaned_data)
@@ -83,22 +84,27 @@ class UploadMovie(View):
             movie.tagline = tagline
             
             movies = Movie.objects.all()
-                       
+            db_genres = Genre.objects.all()      
             
-
             for mov in movies:
                 if mov.original_title == movie.original_title:
                     duplicate_movie == True
-                    return redirect('core:profiles')
-
-                
-            if not duplicate_movie:
-                movie.save()
-                return redirect('core:profiles')
-
-                
-            return redirect('core:profiles')
+              
+            print("Genres are the following: " + str(genres))
             
+            for genre in genres:
+                if not duplicate_movie:
+                    movie.save()
+                    if genre not in db_genres:
+                        genre_to_save = Genre()
+                        genre_to_save.genre = genre
+                        genre_to_save.save()
+                        genre_to_save.movies.add(movie)
+                        
+                elif duplicate_movie:
+                    return redirect('core:profiles')
+            return redirect('core:profiles')
+           
 class ProfileList(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -162,5 +168,8 @@ class ShowMovie(View):
             except movie.DoesNotExist:
                 redirect(to='core:profileHome')
         return render(request, 'core/index.html')
-            
-            
+    
+class GenresList(View):
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return render(request, 'genre_list.html')

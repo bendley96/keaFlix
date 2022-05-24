@@ -41,6 +41,6 @@ class Movie(models.Model):
     age_limit   =   models.CharField(max_length = 10, choices=AGE_CHOICES, blank = True,null = True)
 
 class Genre(models.Model):
-    genre       =   models.CharField(max_length = 10, blank = True,null = True)
-    genre_id    =   models.UUIDField(default = uuid.uuid4)
+    genre        =   models.CharField(max_length = 10, blank = True,null = True)
+    genre_id     =   models.UUIDField(default = uuid.uuid4)
     movies       =   models.ManyToManyField(Movie)
