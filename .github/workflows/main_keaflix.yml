@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'keaflix'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_51B9C78CA1EB498AB194B3E16906B0C3 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1C116E3815CC4FC3ABF2D4662CBF57B2 }}
